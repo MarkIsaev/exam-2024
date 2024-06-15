@@ -1,0 +1,92 @@
+{% macro render_form(form) %}
+    <div class="form-group">
+        {{ form.title.label(class="form-control-label") }}
+        {{ form.title(class="form-control") }}
+        {% if form.title.errors %}
+        <ul class="errors">
+            {% for error in form.title.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.short_description.label(class="form-control-label") }}
+        {{ form.short_description(class="form-control", id='short_description') }}
+        {% if form.short_description.errors %}
+        <ul class="errors">
+            {% for error in form.short_description.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.year.label(class="form-control-label") }}
+        {{ form.year(class="form-control") }}
+        {% if form.year.errors %}
+        <ul class="errors">
+            {% for error in form.year.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.publisher.label(class="form-control-label") }}
+        {{ form.publisher(class="form-control") }}
+        {% if form.publisher.errors %}
+        <ul class="errors">
+            {% for error in form.publisher.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.author.label(class="form-control-label") }}
+        {{ form.author(class="form-control") }}
+        {% if form.author.errors %}
+        <ul class="errors">
+            {% for error in form.author.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.page_count.label(class="form-control-label") }}
+        {{ form.page_count(class="form-control") }}
+        {% if form.page_count.errors %}
+        <ul class="errors">
+            {% for error in form.page_count.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.genre.label(class="form-control-label") }}
+        <div class="checkbox-group">
+            {% for subfield in form.genre %}
+            <div class="form-check form-check-inline">
+                {{ subfield(class="form-check-input") }}
+                {{ subfield.label(class="form-check-label") }}
+            </div>
+            {% endfor %}
+        </div>
+        {% if form.genre.errors %}
+        <ul class="errors">
+            {% for error in form.genre.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+{% endmacro %}

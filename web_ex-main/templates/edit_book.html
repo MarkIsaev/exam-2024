@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% import 'macros.html' as macros %}
+
+{% block content %}
+<div class="container">
+    <h1>Редактирование книги</h1>
+
+    <form action="{{ url_for('books.edit_book', book_id=book.id) }}" method="post" enctype="multipart/form-data" class="book-form">
+        {{ form.hidden_tag() }}
+
+        {{ macros.render_form(form) }}
+
+        {% if not book.cover_id %}
+        <div class="form-group">
+            {{ form.cover_image.label(class="form-control-file") }}
+            {{ form.cover_image(class="form-control-file") }}
+        </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+    </form>
+</div>
+{% endblock %}

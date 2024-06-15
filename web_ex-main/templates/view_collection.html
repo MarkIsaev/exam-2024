@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>{{ collection.title }}</h1>
+        
+        <ul class="list-group">
+            {% for book in collection.books %}
+                <li class="list-group-item">
+                    {{ book.title }} by {{ book.author }}
+                    <a href="{{ url_for('books.book', book_id=book.id) }}" class="btn btn-secondary btn-sm">Посмотреть книгу</a>
+                    <form method="post" action="{{ url_for('collections_bp.remove_from_collection', collection_id=collection.id, book_id=book.id) }}" onsubmit="return confirm('Вы уверены, что хотите удалить эту книгу из подборки?');" style="display: inline-block;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Удалить из подборки</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <a href="{{ url_for('collections_bp.collections') }}" class="btn btn-primary mt-3">Вернуться к моим подборкам</a>
+    </div>
+{% endblock %}

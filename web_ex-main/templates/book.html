@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="book-details">
+        {% if current_user.is_authenticated and (current_user.role.name != 'user' or current_user.id == book.user_id) %}
+            <div class="actions">
+                <a href="{{ url_for('books.edit_book', book_id=book.id) }}" class="btn btn-primary">Редактировать книгу</a>
+                {% if current_user.role.name == 'admin' %}
+                    <form method="post" action="{{ url_for('books.delete_book', book_id=book.id) }}" onsubmit="return confirm('Вы уверены, что хотите удалить эту книгу?');" style="display: inline-block;">
+                        <button type="submit" class="btn btn-danger">Удалить книгу</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        <article>
+            <h1>{{ book.title }}</h1>
+            <p><strong>Автор:</strong> {{ book.author }}</p>
+            <p><strong>Год издания:</strong> {{ book.year }}</p>
+            <p><strong>Издательство:</strong> {{ book.publisher }}</p>
+            <p><strong>Описание:</strong> {{ book.short_description | markdown | safe }} </p>
+            <p><strong>Жанры:</strong>
+                <ul>
+                    {% for genre in book.genres %}
+                        <li>{{ genre.name }}</li>
+                    {% endfor %}
+                </ul>
+            </p>
+            <p><strong>Количество страниц:</strong> {{ book.page_count }}</p>
+            <img src="{{ url_for('static', filename='images/' + book.cover.filename) }}" alt="Обложка книги" class="book-cover" style="max-width: 30%;">
+        </article>
+
+        <section class="reviews">
+            {% if current_user.is_authenticated %}
+                {% if user_review %}
+                    <h2>Моя рецензия</h2>
+                    <article class="review user-review">
+                        <p><strong>Оценка:</strong> {{ dict(form.rating.choices)[user_review.rating|string] }}</p>
+                        <p><strong>Текст:</strong> {{ user_review.text }}</p>
+                        <p><strong>Дата:</strong> {{ user_review.date_added }}</p>
+                    </article>
+                {% else %}
+                    <h2>Рецензия</h2>
+                    <p><a href="{{ url_for('books.review', book_id=book.id) }}" class="btn btn-primary">Оставить рецензию на книгу</a></p>
+                {% endif %}
+            {% else %}
+                <p>Чтобы оставить рецензию на книгу, <a href="{{ url_for('login') }}">войдите</a> или <a href="{{ url_for('register') }}">зарегистрируйтесь</a>.</p>
+            {% endif %}
+
+            <h3>Все рецензии:</h3>
+            {% if reviews %}
+                {% for review in reviews %}
+                    {% if current_user.is_authenticated and review.user_id == current_user.id %}
+                        <article class="review user-review">
+                    {% else %}
+                        <article class="review">
+                    {% endif %}
+                        <p><strong>Оценка:</strong> {{ dict(form.rating.choices)[review.rating|string] }}</p>
+                        <p><strong>Пользователь:</strong> {{ review.user.first_name }} {{ review.user.last_name }}</p>
+                        <p><strong>Текст:</strong> {{ review.text | safe }}</p>
+                        <p><strong>Дата:</strong> {{ review.date_added }}</p>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p>Пока нет рецензий на эту книгу.</p>
+            {% endif %}
+        </section>
+
+        {% if current_user.is_authenticated %}
+            <button id="addToCollectionBtn" class="btn btn-primary">Добавить книгу в подборку</button>
+        {% endif %}
+
+        <div id="addToCollectionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Добавить книгу в подборку</h2>
+                </div>
+                <div class="modal-body">
+                    <form id="addToCollectionForm" action="{{ url_for('collections_bp.add_to_collection', book_id=book.id) }}" method="post">
+                        {% for message in get_flashed_messages(category_filter=['danger']) %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <div class="form-group">
+                            <label for="collection">Выберите подборку:</label>
+                            <select id="collection" name="collection" class="form-control">
+                                {% for collection in collections %}
+                                    <option value="{{ collection.id }}">{{ collection.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        <span class="close">Отмена</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}

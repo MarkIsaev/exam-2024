@@ -1,0 +1,94 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXFileReference section */
+		C7713FD12C19730100BDD433 /* models.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
+		C7713FD22C19730100BDD433 /* static */ = {isa = PBXFileReference; lastKnownFileType = folder; path = static; sourceTree = "<group>"; };
+		C7713FD32C19730100BDD433 /* app.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = app.py; sourceTree = "<group>"; };
+		C7713FD42C19730100BDD433 /* templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = templates; sourceTree = "<group>"; };
+		C7713FD52C19730100BDD433 /* schema.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
+		C7713FD62C1B4F8B00BDD433 /* extensions.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = extensions.py; sourceTree = "<group>"; };
+		C797EE8F2C1B644C00D576DE /* migrate.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = migrate.py; sourceTree = "<group>"; };
+		C797EE902C1CD4F400D576DE /* forms.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = forms.py; sourceTree = "<group>"; };
+		C797EE912C1CD50800D576DE /* books.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = books.py; sourceTree = "<group>"; };
+		C797EE922C1CD57500D576DE /* collections_blueprint.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = collections_blueprint.py; sourceTree = "<group>"; };
+		C797EE942C1CD6F200D576DE /* config.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = config.py; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		C701A2C22BA721730050CE6C = {
+			isa = PBXGroup;
+			children = (
+				C797EE942C1CD6F200D576DE /* config.py */,
+				C797EE922C1CD57500D576DE /* collections_blueprint.py */,
+				C797EE912C1CD50800D576DE /* books.py */,
+				C797EE902C1CD4F400D576DE /* forms.py */,
+				C797EE8F2C1B644C00D576DE /* migrate.py */,
+				C7713FD62C1B4F8B00BDD433 /* extensions.py */,
+				C7713FD32C19730100BDD433 /* app.py */,
+				C7713FD12C19730100BDD433 /* models.py */,
+				C7713FD52C19730100BDD433 /* schema.sql */,
+				C7713FD22C19730100BDD433 /* static */,
+				C7713FD42C19730100BDD433 /* templates */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		C701A2C32BA721730050CE6C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1530;
+			};
+			buildConfigurationList = C701A2C62BA721730050CE6C /* Build configuration list for PBXProject "web" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C701A2C22BA721730050CE6C;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		C701A2C72BA721730050CE6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		C701A2C82BA721730050CE6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C701A2C62BA721730050CE6C /* Build configuration list for PBXProject "web" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C701A2C72BA721730050CE6C /* Debug */,
+				C701A2C82BA721730050CE6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C701A2C32BA721730050CE6C /* Project object */;
+}

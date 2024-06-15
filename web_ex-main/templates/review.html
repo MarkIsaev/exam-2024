@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Рецензия на книгу "{{ book.title }}"</h2>
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.rating.label(class="form-control-label") }}
+                {{ form.rating(class="form-control") }}
+                {% for error in form.rating.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.text.label(class="form-control-label") }}
+                {{ form.text(class="form-control", id='review-text') }}
+                {% for error in form.text.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Оставить рецензию</button>
+        </form>
+    </div>
+{% endblock %}

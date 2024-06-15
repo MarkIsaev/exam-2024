@@ -1,0 +1,15 @@
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">Главная</a></li>
+        {% if current_user.is_authenticated %}
+            {% if current_user.role.name == 'user' %}
+                <li><a href="{{ url_for('collections_bp.collections') }}">Мои подборки</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('logout') }}">Выход</a></li>
+            <li><span>Здравствуйте, {{ current_user.first_name }} {{ current_user.last_name }}</span></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Вход</a></li>
+            <li><a href="{{ url_for('register') }}">Регистрация</a></li>
+        {% endif %}
+    </ul>
+</nav>
